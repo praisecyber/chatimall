@@ -36,7 +36,9 @@ services:
       - key: MONGODB_URI
         sync: false            # your MongoDB Atlas connection string (mongodb+srv://...)
       - key: CLIENT_ORIGINS
-        sync: false            # e.g. https://chatimall-frontend-XXXX.vercel.app,https://*.vercel.app,http://localhost:5173
+        sync: false            # e.g. https://chatimall-frontend.vercel.app,https://*.vercel.app,http://localhost:5173
+                               # Hint: even if left empty, the backend auto-allows *.vercel.app + localhost in production,
+                               # so the default Chatimall frontend just works without manually setting this.
       - key: DEV_OTP_ECHO
         value: false
       - key: TEST_PHONES
