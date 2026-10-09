@@ -1,10 +1,27 @@
-# Render Blueprint: backend (Node + Socket.IO) -> MongoDB Atlas
-# Render dashboard -> New -> Blueprint -> pick this repo. You will be asked for the "sync: false" values.
+# ==========================================================================
+# Render Blueprint for Chatimall
+#
+# TWO ways to deploy — pick one:
+#
+# (A) Use chatimall META REPO (https://github.com/praisecyber/chatimall):
+#     Render dashboard -> New -> Blueprint -> pick the `chatimall` repo.
+#     The `rootDir: BACKEND` below tells Render to look inside the BACKEND/
+#     subfolder of the meta repo. You'll be prompted for the "sync: false" values.
+#
+# (B) Use chatimall-backend STANDALONE repo (https://github.com/praisecyber/chatimall-backend):
+#     If you deploy the `chatimall-backend` repo directly (not Blueprint),
+#     DELETE the `rootDir: BACKEND` line and set:
+#       Build Command : npm install
+#       Start Command : npm start
+#       Health Check  : /api/health
+#       Runtime       : Node
+#     with the env vars listed below under Environment in the Render UI.
+# ==========================================================================
 services:
   - type: web
-    name: prochatx-backend
+    name: chatimall-backend
     runtime: node
-    rootDir: BACKEND
+    rootDir: BACKEND            # remove this line when deploying from the chatimall-backend standalone repo
     plan: free
     buildCommand: npm install
     startCommand: npm start
@@ -17,18 +34,18 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: MONGODB_URI
-        sync: false            # your MongoDB Atlas connection string
+        sync: false            # your MongoDB Atlas connection string (mongodb+srv://...)
       - key: CLIENT_ORIGINS
-        sync: false            # e.g. https://prochatx.vercel.app,https://*.vercel.app,https://localhost
+        sync: false            # e.g. https://chatimall-frontend-XXXX.vercel.app,https://*.vercel.app,http://localhost:5173
       - key: DEV_OTP_ECHO
         value: false
       - key: TEST_PHONES
-        sync: false            # e.g. 15550001111:123456  (lets you log in before real SMS is set up)
+        sync: false            # e.g. +2348012345678:123456,+15550001111:654321  (log in without real SMS during testing)
       - key: SMS_WEBHOOK_URL
         sync: false
       - key: SMS_WEBHOOK_TOKEN
         sync: false
       - key: FCM_SERVICE_ACCOUNT
-        sync: false            # Firebase service-account JSON (optional, for push)
+        sync: false            # Firebase service-account JSON (optional, for push notifications)
       - key: TRANSLATE_SERVICE_URL
-        sync: false            # URL of your deployed translate-service/ (optional — voice notes work fine without it, just without translation)
+        sync: false            # URL of deployed translate-service/ (optional — voice notes work fine without translation)
