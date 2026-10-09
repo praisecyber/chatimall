@@ -1,0 +1,50 @@
+# ============================================================
+# Chatimall — ROOT META REPO (architecture docs + deploy blueprints only)
+#
+# The three deployable pieces each live in THEIR OWN independent repos:
+#   frontend/          → https://github.com/YOURNAME/chatimall-frontend          → Vercel
+#   BACKEND/           → https://github.com/YOURNAME/chatimall-backend           → Render
+#   translate-service/ → https://github.com/YOURNAME/chatimall-translate-service → its own server (needs RAM)
+#
+# Those three folders are git repos in their own right (each has its own .git/).
+# This root meta-repo keeps only the cross-cutting files: README, original
+# architecture notes, Render blueprint YAML, helper tools.
+# ============================================================
+
+# ---------- The three deployable repos — each has its own .git ----------
+frontend/
+BACKEND/
+translate-service/
+
+# ---------- Node / Python artifacts that could end up at root ----------
+node_modules/
+dist/
+.env
+.env.*
+android/
+*.log
+google-services.json
+service-account*.json
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+models/
+.huggingface/
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# ---------- IDE / OS ----------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+.history/
+

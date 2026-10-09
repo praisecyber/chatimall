@@ -1,0 +1,34 @@
+# Render Blueprint: backend (Node + Socket.IO) -> MongoDB Atlas
+# Render dashboard -> New -> Blueprint -> pick this repo. You will be asked for the "sync: false" values.
+services:
+  - type: web
+    name: prochatx-backend
+    runtime: node
+    rootDir: BACKEND
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false            # your MongoDB Atlas connection string
+      - key: CLIENT_ORIGINS
+        sync: false            # e.g. https://prochatx.vercel.app,https://*.vercel.app,https://localhost
+      - key: DEV_OTP_ECHO
+        value: false
+      - key: TEST_PHONES
+        sync: false            # e.g. 15550001111:123456  (lets you log in before real SMS is set up)
+      - key: SMS_WEBHOOK_URL
+        sync: false
+      - key: SMS_WEBHOOK_TOKEN
+        sync: false
+      - key: FCM_SERVICE_ACCOUNT
+        sync: false            # Firebase service-account JSON (optional, for push)
+      - key: TRANSLATE_SERVICE_URL
+        sync: false            # URL of your deployed translate-service/ (optional — voice notes work fine without it, just without translation)
