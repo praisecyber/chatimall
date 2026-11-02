@@ -2,8 +2,10 @@
 // Run from the repo root:  node tools/check-boundary.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const __filename = fileURLToPath(import.meta.url);
+const root = path.resolve(path.dirname(__filename), '..');
 const parts = ['frontend', 'BACKEND'];
 const skip = new Set(['node_modules', 'dist', 'android', '.git']);
 const exts = /\.(js|mjs|cjs|ts|tsx|jsx|json)$/;

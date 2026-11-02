@@ -25,6 +25,7 @@ android/
 *.log
 google-services.json
 service-account*.json
+*-firebase-adminsdk-*.json
 
 __pycache__/
 *.pyc
