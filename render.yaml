@@ -37,7 +37,7 @@ services:
         sync: false            # your MongoDB Atlas connection string (mongodb+srv://...)
       - key: CLIENT_ORIGINS
         sync: false            # Production CORS allowlist — use YOUR exact frontend URLs, comma-separated, no trailing slash:
-                               #   https://chatimall-frontend.vercel.app,https://*.vercel.app,http://localhost:5173,http://127.0.0.1:5173
+                               #   https://chatimall-frontend.vercel.app,https://*.vercel.app,http://localhost:5173,http://127.0.0.1:5173,https://localhost
                                # Hint: even if left empty, the backend auto-allows *.vercel.app + localhost + Capacitor in production
                                # (see BACKEND/src/config.js DEFAULT_CLIENT_ORIGINS_PRODUCTION), so the default frontend just works.
       - key: DEV_OTP_ECHO
